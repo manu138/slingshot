@@ -43,8 +43,8 @@ public class Planet : MonoBehaviour
 
 
 
-            Vector3 posB = new Vector3(  transform.position.x- mousePosWorld.x, transform.position.y- mousePosWorld.y  , transform.position.z-mousePosWorld.z  );
-            Mathf.Clamp(posB.magnitude, 0, 100);
+            Vector3 posB = new Vector3(  transform.position.x+mousePosWorld.x, transform.position.y+ mousePosWorld.y  , transform.position.z+mousePosWorld.z  );
+           float b= Mathf.Clamp(posB.magnitude, transform.position.magnitude, 10);
 
             lineRenderer.SetPosition(0, posB);
             rigidbody.AddForce(posB.normalized * speed, ForceMode2D.Impulse);
