@@ -9,11 +9,16 @@ public class Planet : MonoBehaviour
     [SerializeField]
     private int speed;
 
+    private LineRenderer lineRenderer;
+
+
 
     private void Awake ()
 	{
 		rigidbody = GetComponent<Rigidbody2D> ();
-	}
+
+        lineRenderer = GetComponent<LineRenderer>();
+    }
 
 	private void Start () 
 	{
@@ -38,10 +43,10 @@ public class Planet : MonoBehaviour
 
 
 
-            Vector3 posB = new Vector3(mousePosWorld.x - transform.position.x, mousePosWorld.y - transform.position.y, mousePosWorld.z - transform.position.z);
-            Mathf.Clamp(posB.magnitude, 0, 10);
+            Vector3 posB = new Vector3(  transform.position.x- mousePosWorld.x, transform.position.y- mousePosWorld.y  , transform.position.z-mousePosWorld.z  );
+            Mathf.Clamp(posB.magnitude, 0, 100);
 
-
+            lineRenderer.SetPosition(0, posB);
             rigidbody.AddForce(posB.normalized * speed, ForceMode2D.Impulse);
 
         }
