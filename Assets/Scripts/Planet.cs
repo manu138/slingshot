@@ -44,7 +44,7 @@ public class Planet : MonoBehaviour
 
 
             Vector3 posB = new Vector3(transform.position.x + mousePosWorld.x, transform.position.y + mousePosWorld.y, 0);
-            
+         
             lineRenderer.SetPosition(1, posB);
             rigidbody.AddForce(posB.normalized * speed, ForceMode2D.Impulse);
 
