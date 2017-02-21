@@ -7,7 +7,10 @@ public class Planet : MonoBehaviour
 	private float maxTorque;
 	private new Rigidbody2D rigidbody;
     [SerializeField]
-    private int speed;
+    private int speed = 100;
+
+    public float rango;
+    public Vector3 posB;
 
     private LineRenderer lineRenderer;
 
@@ -43,11 +46,17 @@ public class Planet : MonoBehaviour
 
 
 
-            Vector3 posB = new Vector3(transform.position.x + mousePosWorld.x, transform.position.y + mousePosWorld.y, 0);
-         
+            posB = new Vector3(transform.position.x + mousePosWorld.x, transform.position.y + mousePosWorld.y, 0);
+            rango = Mathf.Clamp(posB.magnitude, 0, 10);
             lineRenderer.SetPosition(1, posB);
-            rigidbody.AddForce(posB.normalized * speed, ForceMode2D.Impulse);
-
+           
         }
+        
+
+    }
+    public void AplicarFuerza(int rango)
+    {
+        if (rango >= 10)
+            rigidbody.AddForce(posB.normalized * speed, ForceMode2D.Impulse);
     }
 }
